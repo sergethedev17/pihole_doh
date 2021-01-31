@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# exit when any command fails
+set -e
+
+if ! ( [ -z "${SSL_HOSTNAME}" ] && [ -z "${SSL_CERTIFICATE}" ] ); then
+  echo "Enabling SSL for hostname '${SSL_HOSTNAME}' using '${SSL_CERTIFICATE}' SSL certificate."
+
+  cp /etc/lighttpd/external.conf.template /etc/lighttpd/external.conf
+  sed -i "s|__SSL_HOSTNAME__|${SSL_HOSTNAME}|g" /etc/lighttpd/external.conf
+  sed -i "s|__SSL_CERTIFICATE__|${SSL_CERTIFICATE}|g" /etc/lighttpd/external.conf
+else
+	echo '' > external.conf;
+fi;
