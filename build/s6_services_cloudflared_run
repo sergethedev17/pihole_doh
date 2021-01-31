@@ -1,0 +1,6 @@
+#!/usr/bin/execlineb -P
+
+importas DOH_SERVE_PORT DOH_SERVE_PORT
+importas DOH_URL DOH_URL
+
+/usr/local/bin/cloudflared proxy-dns --port $DOH_SERVE_PORT --upstream $DOH_URL
